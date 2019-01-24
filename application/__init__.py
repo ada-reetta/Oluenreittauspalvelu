@@ -4,7 +4,7 @@ app = Flask(__name__)
 
 # Tuodaan SQLAlchemy käyttöön
 from flask_sqlalchemy import SQLAlchemy
-# Käytetään tasks.db-nimistä SQLite-tietokantaa. Kolme vinoviivaa
+# Käytetään ratings.db-nimistä SQLite-tietokantaa. Kolme vinoviivaa
 # kertoo, tiedosto sijaitsee tämän sovelluksen tiedostojen kanssa
 # samassa paikassa
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///ratings.db"
@@ -17,6 +17,7 @@ db = SQLAlchemy(app)
 # Luetaan kansiosta application tiedoston views ja models sisältö
 from application import views
 from application.ratings import models
+from application.ratings import views
 
 
 # Luodaan lopulta tarvittavat tietokantataulut

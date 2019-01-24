@@ -6,9 +6,9 @@ class Rating(db.Model):
     #onko onupdate tarpeellinen?
     onupdate=db.func.current_timestamp()
 
-    beer = db.Column(db.String(144), nullable=False)
-    score = db.Column(db.Integer, nullable=False)
+    beer = db.Column(db.String(144), nullable=False) #nullable kuuluu olla false
+    #score = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, name):
+    def __init__(self, beer):
         self.beer = beer
-        self.score = score
+        #self.score = score

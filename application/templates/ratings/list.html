@@ -1,0 +1,14 @@
+{% extends "layout.html" %}
+
+{% block body %}
+  <table>
+    <tr>
+      <th>Rating</th>
+    </tr>
+    {% for rating in ratings %}
+    <tr>
+      <td>{{ rating.beer }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endblock %}
