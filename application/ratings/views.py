@@ -12,7 +12,7 @@ def ratings_form():
 
 @app.route("/ratings/", methods=["POST"])
 def ratings_create():
-    r = Rating(request.form.get("beer"))
+    r = Rating(request.form.get("beer"), request.form.get("rating"))
     
     db.session().add(r)
     db.session().commit()

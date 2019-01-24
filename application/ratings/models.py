@@ -7,8 +7,8 @@ class Rating(db.Model):
     onupdate=db.func.current_timestamp()
 
     beer = db.Column(db.String(144), nullable=False) #nullable kuuluu olla false
-    #score = db.Column(db.Integer, nullable=False)
+    rating = db.Column(db.Integer, nullable=False)
 
-    def __init__(self, beer):
+    def __init__(self, beer, rating):
         self.beer = beer
-        #self.score = score
+        self.rating = rating
