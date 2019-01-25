@@ -4,6 +4,8 @@
 <form method="POST" action="{{ url_for('ratings_create') }}">
   <input type="text" name="beer"/>
   <input type="number" name="rating"/>
+  <input type="text" name="comment"/>
+  <input type="text" name="flavor"/>
   <input type="submit" value="Add a new rating"/>
 </form>
 {% endblock %}
