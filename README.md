@@ -4,4 +4,4 @@ Oluenreittauspalveluissa arvostellaan oluita ja etsitään uutta juotavaa. Käyt
 
 [Heroku](https://tsoha-oluenreittauspalvelu.herokuapp.com)
 
-[Käyttäjätarinat](Oluenreittauspalvelu/documentation/User_stories.md)
+[Käyttäjätarinat](User_stories.md)
