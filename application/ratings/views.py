@@ -15,7 +15,10 @@ def ratings_form():
 def ratings_create():
     form = RatingForm(request.form)
 
-    r = Rating(form.beer.data, form.rating.data)
+    if not form.validate():
+        return render_template("ratings/new.html", form = form)
+
+    r = Rating(form.beer.data, form.rating.data, form.comment.data, form.flavor.data)
     #r.rating = form.rating.data
     #r = Rating(request.form.get("beer"), request.form.get("rating"))
     
