@@ -1,6 +1,7 @@
 from application import app, db
 from flask import redirect, render_template, request, url_for
 from application.ratings.models import Rating
+from application.ratings.forms import RatingForm
 
 @app.route("/ratings", methods=["GET"])
 def ratings_index():
@@ -8,11 +9,15 @@ def ratings_index():
 
 @app.route("/ratings/new/")
 def ratings_form():
-    return render_template("ratings/new.html")
+    return render_template("ratings/new.html", form = RatingForm())
 
 @app.route("/ratings/", methods=["POST"])
 def ratings_create():
-    r = Rating(request.form.get("beer"), request.form.get("rating"))
+    form = RatingForm(request.form)
+
+    r = Rating(form.beer.data, form.rating.data)
+    #r.rating = form.rating.data
+    #r = Rating(request.form.get("beer"), request.form.get("rating"))
     
     db.session().add(r)
     db.session().commit()
