@@ -4,18 +4,27 @@ app = Flask(__name__)
 
 from flask_sqlalchemy import SQLAlchemy
 
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///ratings.db"
+import os
 
-app.config["SQLALCHEMY_ECHO"] = True
+if os.environ.get("HEROKU"):
+    app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URL")
+else:
+    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///ratings.db"    
+    app.config["SQLALCHEMY_ECHO"] = True
 
 db = SQLAlchemy(app)
 
 from application import views
+
 from application.ratings import models
 from application.ratings import views
 
 from application.auth import models
 from application.auth import views
+
+
+#from application.auth.register import models
+from application.auth.register import views
 
 # kirjautuminen
 from application.auth.models import User
@@ -35,5 +44,7 @@ def load_user(user_id):
 
 # luodaan taulut tietokantaan tarvittaessa
 
-db.create_all()
-
+try: 
+    db.create_all()
+except:
+    pass

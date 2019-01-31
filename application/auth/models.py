@@ -14,8 +14,7 @@ class User(db.Model):
 
     tasks = db.relationship("Rating", backref='account', lazy=True)
 
-    def __init__(self, name, username, password):
-        self.name = name
+    def __init__(self, username, password):
         self.username = username
         self.password = password
   
