@@ -9,6 +9,9 @@ class Rating(db.Model):
     comment = db.Column(db.String(144), nullable=True)
     flavor = db.Column(db.String(144), nullable=True)
 
+    account_id = db.Column(db.Integer, db.ForeignKey('account.id'),
+                           nullable=False)
+
     def __init__(self, beer, rating, comment, flavor):
         self.beer = beer
         self.rating = rating

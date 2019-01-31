@@ -9,7 +9,7 @@ flavors = [('hedelmäinen', 'hedelmäinen'), ('raikas', 'raikas'), ('maltainen',
 class RatingForm(FlaskForm):
     beer = SelectField(label = "Beer", choices=beers)
     rating = IntegerField("Rating (4-10)", validators=[NumberRange(4, 10)])
-    comment = StringField("Comment")
+    comment = StringField("Comment", [validators.Length(max=140)])
     flavor = SelectField(label = "Flavor", choices=flavors)
  
     class Meta:
