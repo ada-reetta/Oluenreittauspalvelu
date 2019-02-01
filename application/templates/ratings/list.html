@@ -14,6 +14,11 @@
       <td>{{ rating.rating }}</td>
       <td>{{ rating.comment }}</td>
       <td>{{ rating.flavor }}</td>
+      <td>
+        <a href="{{ url_for('ratings_modify', rating_id=rating.id) }}">
+          Muokkaa
+        </a>
+      </td>
     </tr>
     {% endfor %}
   </table>

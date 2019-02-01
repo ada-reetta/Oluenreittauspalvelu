@@ -2,7 +2,7 @@ from application import app, db
 from flask import redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 from application.ratings.models import Rating
-from application.ratings.forms import RatingForm
+from application.ratings.forms import RatingForm, RatingEditForm
 
 @app.route("/ratings", methods=["GET"])
 def ratings_index():
@@ -12,6 +12,17 @@ def ratings_index():
 @login_required
 def ratings_form():
     return render_template("ratings/new.html", form = RatingForm())
+
+@app.route("/ratings/<rating_id>/", methods=["GET"])
+@login_required
+def ratings_modify(rating_id):
+    r = Rating.query.get(rating_id)
+    form = RatingEditForm(obj=r)
+    #form = RatingEditForm(r.beer, r.rating, r.comment, r.flavor)
+
+    return render_template("ratings/new.html", form = form)
+  
+    #return redirect(url_for("tasks_index"))
 
 @app.route("/ratings/", methods=["POST"])
 @login_required
