@@ -12,11 +12,14 @@
       </p>
       {% else %}
       <a href="{{ url_for('auth_login') }}">Kirjaudu</a>
+      <p>
+        Eikö sinulla ole vielä tunnuksia? <a href="{{ url_for('auth_register') }}">Rekisteröidy</a>
+      </p>
       {% endif %}
       
       <ul>
-        <li><a href="{{ url_for('ratings_index') }}">List ratings</a></li>
-        <li><a href="{{ url_for('ratings_form') }}">Add a rating</a></li>
+        <li><a href="{{ url_for('ratings_index') }}">Listaa arvosteluja</a></li>
+        <li><a href="{{ url_for('ratings_form') }}">Lisää arvostelu</a></li>
       </ul>
       {% block body %}
       <p>

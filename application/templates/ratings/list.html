@@ -5,11 +5,15 @@
     <tr>
       <th>Beer</th>
       <th>Rating</th>
+      <th>Comment</th>
+      <th>Flavor</th>
     </tr>
     {% for rating in ratings %}
     <tr>
       <td>{{ rating.beer }}</td>
       <td>{{ rating.rating }}</td>
+      <td>{{ rating.comment }}</td>
+      <td>{{ rating.flavor }}</td>
     </tr>
     {% endfor %}
   </table>

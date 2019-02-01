@@ -10,9 +10,11 @@ def auth_register():
         return render_template("auth/register/registerform.html", form = RegisterForm())
 
     form = RegisterForm(request.form)
-    # mahdolliset validoinnit
 
-    user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
+    if not form.validate():
+        return render_template("auth/register/registerform.html", form = form)
+
+    user = User.query.filter_by(username=form.username.data).first()
     if not user:
         u = User(request.form.get("username"), request.form.get("password"))
 
