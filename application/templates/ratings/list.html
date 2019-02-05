@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 
+
 {% block body %}
   <table>
     <tr>
@@ -10,7 +11,7 @@
     </tr>
     {% for rating in ratings %}
     <tr>
-      <td>{{ rating.beer }}</td>
+      <td>{{ rating.beer.name }}</td>
       <td>{{ rating.rating }}</td>
       <td>{{ rating.comment }}</td>
       <td>{{ rating.flavor }}</td>
@@ -40,6 +41,5 @@
   </li>
   {% endfor %}
 </ul>
-
 {% endif %}
 {% endblock %}
