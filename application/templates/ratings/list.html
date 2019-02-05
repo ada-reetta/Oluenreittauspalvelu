@@ -15,9 +15,14 @@
       <td>{{ rating.comment }}</td>
       <td>{{ rating.flavor }}</td>
       <td>
-        <a href="{{ url_for('ratings_modify', rating_id=rating.id) }}">
+        <a href="{{ url_for('ratings_editform', rating_id=rating.id) }}">
           Muokkaa
         </a>
+      </td>
+      <td>
+        <form method="POST" action="{{ url_for('ratings_delete', rating_id=rating.id) }}">
+          <input type="submit" value="Poista"/>
+        </form>
       </td>
     </tr>
     {% endfor %}
