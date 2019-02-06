@@ -8,17 +8,15 @@ class Beer(db.Model):
     def __init__(self, name):
         self.name = name
 
-    ratings = db.relationship('Rating', backref='beer', lazy=True)
+    ratings = db.relationship("Rating", backref='beer', lazy=True)
 
     @staticmethod
     def average_rating():
-        stmt = text('SELECT Beer.name, AVG(Rating.rating) FROM Beer'
-                     'LEFT JOIN Rating ON Rating.beer_id = Beer.id'
-                     ' GROUP BY Beer.id')
+        stmt = text("SELECT Beer.name, AVG(Rating.rating) FROM Beer LEFT JOIN Rating ON Rating.beer_id = Beer.id GROUP BY Beer.id")
         res = db.engine.execute(stmt)
 
         response = []
         for row in res:
-            response.append({'name':row[0], 'rating':row[1]})
+            response.append({"name":row[0], "rating":row[1]})
 
         return response
