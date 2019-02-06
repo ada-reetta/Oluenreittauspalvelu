@@ -29,17 +29,4 @@
     {% endfor %}
   </table>
 
-{% if average_rating is defined %}
-<p>
-  Arvostelujen keskiarvot:
-</p>
-
-<ul>
-  {% for value in average_rating %}
-  <li>
-    {{value.name}} {{value.rating}}
-  </li>
-  {% endfor %}
-</ul>
-{% endif %}
 {% endblock %}

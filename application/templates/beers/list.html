@@ -1,0 +1,22 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+{% if average_rating is defined %}
+<p>
+  Arvostelujen keskiarvot:
+</p>
+  <table>
+    <tr>
+      <th>Beer</th>
+      <th>Rating</th>
+    </tr>
+    {% for value in average_rating %}
+    <tr>
+      <td>{{value.name}}</td>
+      <td>{{value.rating}}</td>
+    </tr>
+    {% endfor %}
+  </table>
+{% endif %}
+{% endblock %}

@@ -7,7 +7,7 @@ from application.ratings.forms import RatingForm, RatingEditForm
 
 @app.route("/ratings", methods=["GET"])
 def ratings_index():
-    return render_template("ratings/list.html", ratings = Rating.query.all(), average_rating=Beer.average_rating())
+    return render_template("ratings/list.html", ratings = Rating.query.all())
 
 @app.route("/ratings/new/")
 @login_required

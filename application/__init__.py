@@ -20,6 +20,7 @@ from application.ratings import models
 from application.ratings import views
 
 from application.beers import models
+from application.beers import views
 
 from application.auth import models
 from application.auth import views
