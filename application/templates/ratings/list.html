@@ -7,14 +7,14 @@
       <th>Beer</th>
       <th>Rating</th>
       <th>Comment</th>
-      <th>Flavor</th>
+      <!-- <th>Flavor</th> -->
     </tr>
     {% for rating in ratings %}
     <tr>
       <td>{{ rating.beer.name }}</td>
       <td>{{ rating.rating }}</td>
       <td>{{ rating.comment }}</td>
-      <td>{{ rating.flavor }}</td>
+      <!-- <td>{{ rating.flavor }}</td> kuinka saadaan listattua?-->
       <td>
         <a href="{{ url_for('ratings_editform', rating_id=rating.id) }}">
           Muokkaa

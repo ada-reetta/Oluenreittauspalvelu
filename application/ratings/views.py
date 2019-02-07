@@ -1,8 +1,9 @@
 from application import app, db
 from flask import redirect, render_template, request, url_for
 from flask_login import login_required, current_user
-from application.ratings.models import Rating
+from application.ratings.models import Rating, RatingFlavor
 from application.beers.models import Beer
+from application.flavors.models import Flavor
 from application.ratings.forms import RatingForm, RatingEditForm
 
 @app.route("/ratings", methods=["GET"])
@@ -14,16 +15,18 @@ def ratings_index():
 def ratings_form():
     f = RatingForm()
     f.beer.choices = [(g.id, g.name) for g in Beer.query.all()]
+    f.flavor.choices = [(g.id, g.name) for g in Flavor.query.all()]
     return render_template("ratings/new.html", form = f)
 
 @app.route("/ratings/<rating_id>", methods=["GET"])
 @login_required
 def ratings_editform(rating_id):
     r = Rating.query.get(rating_id)
-    form = RatingEditForm(obj=r)
-    form.beer.choices = [(g.id, g.name) for g in Beer.query.all()]
+    f = RatingEditForm(obj=r)
+    f.beer.choices = [(g.id, g.name) for g in Beer.query.all()]
+    f.flavor.choices = [(g.id, g.name) for g in Flavor.query.all()]
 
-    return render_template("ratings/edit.html", form = form, id = rating_id)
+    return render_template("ratings/edit.html", form = f, id = rating_id)
 
 @app.route("/ratings/", methods=["POST"])
 @login_required
@@ -34,12 +37,24 @@ def ratings_create():
     #if not form.validate():
         #return render_template("ratings/new.html", form = form)
 
-    r = Rating(form.rating.data, form.comment.data, form.flavor.data)
+    
+    r = Rating(form.rating.data, form.comment.data)
     r.account_id = current_user.id
     r.beer_id = form.beer.data
+
     
     db.session().add(r)
     db.session().commit()
+
+    for g in form.flavor.data:
+        rf = RatingFlavor(r.id, g)
+        db.session().add(rf)
+        db.session().commit()
+
+    # rf = RatingFlavor(r.id, form.flavor.data[1])
+    
+    # db.session().add(rf)
+    # db.session().commit()
   
     return redirect(url_for("ratings_index"))
 
@@ -52,12 +67,9 @@ def ratings_edit(rating_id):
         return render_template("ratings/edit.html", form = form, id = rating_id)
 
     r = Rating.query.get(rating_id)
-    r.beer = form.beer.data
+    #r.beer = form.beer.data
     r.rating = form.rating.data
     r.comment = form.comment.data
-    r.flavor = form.flavor.data
-    #r.rating = form.rating.data
-    #r = Rating(request.form.get("beer"), request.form.get("rating"))
     r.account_id = current_user.id
     
     db.session().commit()
