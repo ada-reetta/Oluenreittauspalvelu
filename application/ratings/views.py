@@ -10,6 +10,12 @@ from application.ratings.forms import RatingForm, RatingEditForm
 def ratings_index():
     return render_template("ratings/list.html", ratings = Rating.query.all())
 
+@app.route("/ratings/own", methods=["GET"])
+@login_required
+def ratings_own():
+    user_id = current_user.id
+    return render_template("ratings/listown.html", own_ratings = Rating.own_ratings(user_id))
+
 @app.route("/ratings/new/")
 @login_required
 def ratings_form():

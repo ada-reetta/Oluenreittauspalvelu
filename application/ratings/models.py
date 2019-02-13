@@ -1,4 +1,5 @@
 from application import db
+from sqlalchemy.sql import text
 
 class Rating(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -20,6 +21,22 @@ class Rating(db.Model):
         self.rating = rating
         self.comment = comment
         # sama kuin yllä self.flavor = flavor
+
+    @staticmethod
+    def own_ratings(user):
+        user_id = user
+        stmt = text("SELECT * FROM Rating WHERE account_id = :user").params(user=user)
+        res = db.engine.execute(stmt)
+
+        response = []
+        for row in res:
+            r = Rating(row[3], row[4])
+            r.id = row[0]
+            r.account_id = row[5]
+            r.beer_id = row[6]
+            response.append(r)
+
+        return response
 
 #pitäisikö tänä luoda omaan kansioon ja omaan models.py-tiedostoon?
 
