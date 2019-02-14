@@ -2,19 +2,21 @@
 
 
 {% block body %}
-{% if average_rating is defined %}
+{% if beers is defined %}
 <p>
-  Arvostelujen keskiarvot:
+  Oluiden yhteenveto:
 </p>
   <table>
     <tr>
-      <th>Beer</th>
-      <th>Rating</th>
+      <th>Olut</th>
+      <th>Arvostelujen keskiarvo</th>
+      <th>Maku</th>
     </tr>
-    {% for value in average_rating %}
+    {% for value in beers %}
     <tr>
-      <td>{{value.name}}</td>
-      <td>{{value.rating}}</td>
+      <td>{{value[0]}}</td>
+      <td>{{value[1]}}</td>
+      <td>{{value[2]}}</td>
     </tr>
     {% endfor %}
   </table>
