@@ -1,6 +1,6 @@
 #Oluenreittauspalvelu
 
-Oluenreittauspalveluissa arvostellaan oluita ja etsitään uutta juotavaa. Käyttäjä kirjautuu palveluun. Kirjauduttuaan hän voi arvostella oluita arvosanalla, kommentilla ja valitsemalla 1-3 oluen makuprofiiliin sopivaa makua listalta. Admin hallitsee arvosteltavien oluiden sekä valittavien makujen listaa. Käyttäjä voi lisäksi listata arvosteluja eri tavoin, esim. arvosanan mukaan tai uusimmasta vanhimpaan.
+Oluenreittauspalveluissa arvostellaan oluita ja etsitään uutta juotavaa. Käyttäjä kirjautuu palveluun. Kirjauduttuaan hän voi arvostella oluita arvosanalla, kommentilla ja valitsemalla oluen makuprofiiliin sopivia makuja listalta. (Admin hallitsee arvosteltavien oluiden sekä valittavien makujen listaa.) Käyttäjä voi lisäksi listata arvosteluja, hakea vain omat arvostelunsa tai listata oluet, jolloin näkyvillä on arvosanojen keskiarvo ja oluen yleisimmäksi luokiteltu maku.
 
 [Heroku](https://tsoha-oluenreittauspalvelu.herokuapp.com)
 
