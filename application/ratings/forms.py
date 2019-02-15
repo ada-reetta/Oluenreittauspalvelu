@@ -4,15 +4,13 @@ from wtforms.validators import Length, NumberRange, DataRequired
 from wtforms.fields.html5 import IntegerRangeField
 from application.beers.models import Beer
 
-#toimiva beers = [('olvi', 'olvi'), ('karjala', 'karjala'), ('karhu', 'karhu')]
-#flavors = [('hedelmäinen', 'hedelmäinen'), ('raikas', 'raikas'), ('maltainen', 'maltainen')]
 
 class RatingForm(FlaskForm):
     #toimiva beer = SelectField(label = "Beer", choices=beers)
-    beer = SelectField("Beer", coerce=int)
+    beer = SelectField("Beer", coerce=int, validators=[validators.optional()])
     rating = IntegerField("Rating (4-10)", validators=[NumberRange(4, 10)])
     comment = StringField("Comment", validators=[Length(max=140)])
-    flavor = SelectMultipleField(label = "Flavor", coerce=int)
+    flavor = SelectMultipleField(label = "Flavor", coerce=int, validators=[validators.optional()])
  
     class Meta:
         csrf = False

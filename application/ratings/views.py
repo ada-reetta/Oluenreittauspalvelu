@@ -38,6 +38,8 @@ def ratings_editform(rating_id):
 @login_required
 def ratings_create():
     form = RatingForm(request.form)
+    form.beer.choices = [(g.id, g.name) for g in Beer.query.all()]
+    form.flavor.choices = [(g.id, g.name) for g in Flavor.query.all()]
 
     #ei toimi, johtuuko choicesista, joka luodaan nykyään joka kerta uudestaan kun lomake piirretään?
     if not form.validate():
@@ -63,6 +65,8 @@ def ratings_create():
 @login_required
 def ratings_edit(rating_id):
     form = RatingForm(request.form)
+    form.beer.choices = [(g.id, g.name) for g in Beer.query.all()]
+    form.flavor.choices = [(g.id, g.name) for g in Flavor.query.all()]
 
     if not form.validate():
         return render_template("ratings/edit.html", form = form, id = rating_id)
@@ -88,4 +92,4 @@ def ratings_delete(rating_id):
     db.session().delete(r)
     db.session().commit()
   
-    return redirect(url_for("ratings_index"))
+    return redirect(url_for("ratings_own"))
