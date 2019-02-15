@@ -14,7 +14,7 @@ def ratings_index():
 @login_required
 def ratings_own():
     user_id = current_user.id
-    return render_template("ratings/listown.html", own_ratings = Rating.own_ratings(user_id))
+    return render_template("ratings/listown.html", own_ratings = Rating.query.filter(Rating.account_id == user_id))
 
 @app.route("/ratings/new/")
 @login_required
