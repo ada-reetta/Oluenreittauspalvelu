@@ -40,7 +40,23 @@ class Beer(db.Model):
     def summary():
         
         stmt = text("SELECT Beer.name, AVG(Rating.rating), flavormax.name FROM Flavor, Rating_flavor, Rating, Beer, (SELECT MAX(flavorcounts.num) AS maxflavor, flavorcounts.name AS name FROM (SELECT Flavor.name AS name, COUNT(Flavor.name) AS num FROM Flavor, Rating_flavor, Rating, Beer WHERE Flavor.id = Rating_flavor.flavor_id AND Rating.id = Rating_flavor.rating_id AND Beer.id = Rating.beer_id) flavorcounts GROUP BY flavorcounts.name) flavormax WHERE Flavor.id = Rating_flavor.flavor_id AND Rating.id = Rating_flavor.rating_id AND Beer.id = Rating.beer_id GROUP BY Beer.id ORDER BY AVG(Rating.rating) DESC")
-        stmt2 = text("SELECT Beer.name, AVG(Rating.rating), Flavor.name FROM Flavor, Rating_flavor, Rating, Beer, (SELECT MAX(flavorcounts.num) AS maxflavor, flavorcounts.name AS name FROM (SELECT Flavor.name AS name, COUNT(Flavor.name) AS num FROM Flavor, Rating_flavor, Rating, Beer WHERE Flavor.id = Rating_flavor.flavor_id AND Rating.id = Rating_flavor.rating_id AND Beer.id = Rating.beer_id GROUP BY Flavor.name) flavorcounts GROUP BY flavorcounts.name) flavormax WHERE Flavor.id = Rating_flavor.flavor_id AND Rating.id = Rating_flavor.rating_id AND Beer.id = Rating.beer_id AND Flavor.name = flavormax.name GROUP BY Beer.id ORDER BY AVG(Rating.rating) DESC")
+        stmt2 = text("SELECT DISTINCT ON (Beer.name) Beer.name, AVG(Rating.rating), flavormax.name "
+                    "FROM Flavor, Rating_flavor, Rating, Beer, "
+                    "(SELECT MAX(flavorcounts.num) AS maxflavor, flavorcounts.name AS name "
+                    "FROM "
+                    "(SELECT Flavor.name AS name, COUNT(Flavor.name) AS num "
+                    "FROM Flavor, Rating_flavor, Rating, Beer "
+                    "WHERE Flavor.id = Rating_flavor.flavor_id "
+                    "AND Rating.id = Rating_flavor.rating_id "
+                    "AND Beer.id = Rating.beer_id "
+                    "GROUP BY Flavor.name) flavorcounts " 
+                    "GROUP BY flavorcounts.name) flavormax "
+                    "WHERE Flavor.id = Rating_flavor.flavor_id "
+                    "AND Rating.id = Rating_flavor.rating_id "
+                    "AND Beer.id = Rating.beer_id "
+                    "AND Flavor.name = flavormax.name "
+                    "GROUP BY Beer.name, flavormax.name "
+                    "ORDER BY Beer.name, AVG(Rating.rating) DESC")
         res = db.engine.execute(stmt2)
 
         response = []

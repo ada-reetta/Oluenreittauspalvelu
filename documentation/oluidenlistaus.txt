@@ -1,0 +1,18 @@
+SELECT Beer.name, AVG(Rating.rating), flavormax.name 
+FROM Flavor, Rating_flavor, Rating, Beer, 
+(SELECT MAX(flavorcounts.num) AS maxflavor, flavorcounts.name AS name 
+FROM 
+(SELECT Flavor.name AS name, COUNT(Flavor.name) AS num 
+FROM Flavor, Rating_flavor, Rating, Beer 
+WHERE Flavor.id = Rating_flavor.flavor_id 
+AND Rating.id = Rating_flavor.rating_id 
+AND Beer.id = Rating.beer_id 
+GROUP BY Flavor.name) flavorcounts 
+GROUP BY flavorcounts.name) flavormax 
+WHERE Flavor.id = Rating_flavor.flavor_id 
+AND Rating.id = Rating_flavor.rating_id 
+AND Beer.id = Rating.beer_id 
+AND Flavor.name = flavormax.name 
+GROUP BY Beer.name
+ORDER BY flavormax.name, AVG(Rating.rating) DESC
+
