@@ -6,5 +6,5 @@ Oluenreittauspalveluissa arvostellaan oluita ja etsitään uutta juotavaa. Käyt
 
 [Käyttäjätarinat](documentation/User_stories.md)
 
-[Tietokantakaavio](documentation/Tietokantakaavio_150219.png)
+[Tietokantakaavio](documentation/Tietokantakaavio150219.png)
       
