@@ -40,8 +40,8 @@ def ratings_create():
     form = RatingForm(request.form)
 
     #ei toimi, johtuuko choicesista, joka luodaan nykyään joka kerta uudestaan kun lomake piirretään?
-    #if not form.validate():
-        #return render_template("ratings/new.html", form = form)
+    if not form.validate():
+        return render_template("ratings/new.html", form = form)
 
     
     r = Rating(form.rating.data, form.comment.data)
@@ -56,11 +56,6 @@ def ratings_create():
         rf = RatingFlavor(r.id, g)
         db.session().add(rf)
         db.session().commit()
-
-    # rf = RatingFlavor(r.id, form.flavor.data[1])
-    
-    # db.session().add(rf)
-    # db.session().commit()
   
     return redirect(url_for("ratings_index"))
 
@@ -87,6 +82,9 @@ def ratings_edit(rating_id):
 def ratings_delete(rating_id):
 
     r = Rating.query.get(rating_id)
+    for g in RatingFlavor.query.filter(RatingFlavor.rating_id == rating_id):
+        db.session().delete(g)
+
     db.session().delete(r)
     db.session().commit()
   

@@ -11,7 +11,7 @@ class RatingForm(FlaskForm):
     #toimiva beer = SelectField(label = "Beer", choices=beers)
     beer = SelectField("Beer", coerce=int)
     rating = IntegerField("Rating (4-10)", validators=[NumberRange(4, 10)])
-    comment = StringField("Comment", [validators.Length(max=140)])
+    comment = StringField("Comment", validators=[Length(max=140)])
     flavor = SelectMultipleField(label = "Flavor", coerce=int)
  
     class Meta:
