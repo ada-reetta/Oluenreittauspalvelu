@@ -39,6 +39,14 @@
             <li class="nav-item">
               <a class="nav-link" href="{{ url_for('ratings_own') }}">Omat arvostelut</a>
             </li>
+            {% if current_user.admin == True %}
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('beers_form') }}">Lisää olut</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ url_for('flavors_form') }}">Lisää maku</a>
+            </li>
+            {% endif %}
           </ul>
           <div class="form-inline mt-2 mt-md-0">
             {% if current_user.is_authenticated %}

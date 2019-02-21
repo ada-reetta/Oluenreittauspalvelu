@@ -6,21 +6,19 @@ from application.beers.models import Beer
 
 
 class RatingForm(FlaskForm):
-    #toimiva beer = SelectField(label = "Beer", choices=beers)
-    beer = SelectField("Beer", coerce=int, validators=[validators.optional()])
-    rating = IntegerField("Rating (4-10)", validators=[NumberRange(4, 10)])
-    comment = StringField("Comment", validators=[Length(max=140)])
-    flavor = SelectMultipleField(label = "Flavor", coerce=int, validators=[validators.optional()])
+    beer = SelectField("olut", coerce=int, validators=[validators.optional()])
+    rating = IntegerField("Arvosana (4-10)", validators=[NumberRange(4, 10)])
+    comment = StringField("Kommentti", validators=[Length(max=140)])
+    flavor = SelectMultipleField(label = "Maku", coerce=int, validators=[validators.optional()])
  
     class Meta:
         csrf = False
 
 class RatingEditForm(FlaskForm):
-    #toimiva beer = SelectField("Beer", choices=beers)
-    beer = SelectField("Beer", coerce=int)
-    rating = IntegerField("Rating (4-10)", validators=[NumberRange(4, 10)])
-    comment = StringField("Comment", validators=[Length(max=140)])
-    flavor = SelectMultipleField("Flavor", coerce=int)
+    beer = SelectField("Olut", coerce=int)
+    rating = IntegerField("Arvostelu (4-10)", validators=[NumberRange(4, 10)])
+    comment = StringField("Kommentti", validators=[Length(max=140)])
+    flavor = SelectMultipleField("Maku", coerce=int)
  
     class Meta:
         csrf = False

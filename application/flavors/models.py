@@ -7,5 +7,3 @@ class Flavor(db.Model):
 
     def __init__(self, name):
         self.name = name
-
-    #ratingflavors = db.relationship("RatingFlavor", backref='flavor', lazy=True)

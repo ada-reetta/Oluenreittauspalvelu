@@ -11,12 +11,14 @@ class User(db.Model):
 
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
+    admin = db.Column(db.Boolean, nullable=False)
 
     ratings = db.relationship("Rating", backref='account', lazy=True)
 
-    def __init__(self, username, password):
+    def __init__(self, username, password, admin):
         self.username = username
         self.password = password
+        self.admin = admin
   
     def get_id(self):
         return self.id

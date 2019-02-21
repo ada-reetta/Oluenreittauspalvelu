@@ -16,7 +16,7 @@ def auth_register():
 
     user = User.query.filter_by(username=form.username.data).first()
     if not user:
-        u = User(request.form.get("username"), request.form.get("password"))
+        u = User(request.form.get("username"), request.form.get("password"), False)
 
         db.session().add(u)
         db.session().commit()

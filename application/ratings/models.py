@@ -32,7 +32,6 @@ class Rating(db.Model):
 
         return response
 
-#pitäisikö tänä luoda omaan kansioon ja omaan models.py-tiedostoon?
 
 class RatingFlavor(db.Model):
     id = db.Column(db.Integer, primary_key=True)

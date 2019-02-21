@@ -15,7 +15,8 @@
       <td>{{ rating.rating }}</td>
       <td>{{ rating.comment }}</td>
       <!-- <td>{{ rating.flavor }}</td> kuinka saadaan listattua?-->
-      <!-- <td>
+      {% if current_user.admin == True or rating.account_id == current_user.id %}
+      <td>
         <a href="{{ url_for('ratings_editform', rating_id=rating.id) }}">
           Muokkaa
         </a>
@@ -24,7 +25,9 @@
         <form method="POST" action="{{ url_for('ratings_delete', rating_id=rating.id) }}">
           <input type="submit" value="Poista"/>
         </form>
-      </td> -->
+      </td>
+      {% endif %}
+      
     </tr>
     {% endfor %}
   </table>
