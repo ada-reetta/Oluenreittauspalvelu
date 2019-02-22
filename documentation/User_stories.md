@@ -12,7 +12,9 @@ Käyttäjänä haluan listata oluita, jotta löydän mieleiseni.
 
 Käyttäjänä haluan nähdä oluen saamien arvostelujen keskiarvon.
 
-Käyttäjänä haluan nähdä millä maulla muut käyttäjät ovat kuvailleet kutakin olutta, jotta voin valita itselleni mieleisen oluen (esim. banaanisen vehnäoluen)
+Käyttäjänä haluan nähdä millä maulla muut käyttäjät ovat kuvailleet kutakin olutta, jotta voin valita itselleni mieleisen oluen (esim. banaanisen oluen).
 
-(Ylläpitäjänä haluan lisätä palveluun uusia oluita ja makuja, jotta palvelu pysyy tuoreena.)
+Ylläpitäjänä haluan lisätä palveluun uusia oluita ja makuja, jotta palvelu pysyy tuoreena.
+
+Ylläpitäjänä haluan poistaa tai muokata asiattomia tai muuten epäsopivia arvosteluja.
 

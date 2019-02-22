@@ -6,7 +6,7 @@ from application.beers.models import Beer
 
 
 class RatingForm(FlaskForm):
-    beer = SelectField("olut", coerce=int, validators=[validators.optional()])
+    beer = SelectField("Olut", coerce=int, validators=[validators.optional()])
     rating = IntegerField("Arvosana (4-10)", validators=[NumberRange(4, 10)])
     comment = StringField("Kommentti", validators=[Length(max=140)])
     flavor = SelectMultipleField(label = "Maku", coerce=int, validators=[validators.optional()])
@@ -16,7 +16,7 @@ class RatingForm(FlaskForm):
 
 class RatingEditForm(FlaskForm):
     beer = SelectField("Olut", coerce=int)
-    rating = IntegerField("Arvostelu (4-10)", validators=[NumberRange(4, 10)])
+    rating = IntegerField("Arvosana (4-10)", validators=[NumberRange(4, 10)])
     comment = StringField("Kommentti", validators=[Length(max=140)])
     flavor = SelectMultipleField("Maku", coerce=int)
  

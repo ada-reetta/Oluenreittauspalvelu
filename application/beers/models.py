@@ -1,5 +1,6 @@
 from application import db
 from sqlalchemy.sql import text
+import os
 
 class Beer(db.Model):
     id = db.Column(db.Integer, primary_key=True)
